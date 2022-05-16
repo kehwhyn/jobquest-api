@@ -1,0 +1,860 @@
+{
+	"info": {
+		"_postman_id": "7f6565bc-d9f7-45b3-8bfc-4e554c7cdf05",
+		"name": "job_quest",
+		"description": "Coleção das chamadas para API do job_quest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "usuario",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{job_quest_url}}/api/users/",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{job_quest_url}}/api/users/4",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove_user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{job_quest_url}}/api/users/12",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert_user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"jajajas\",\r\n    \"email\": \"gghfhfghfg@gmail.com\",\r\n    \"senha\": \"8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92\",\r\n    \"perfil\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{job_quest_url}}/api/users/",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_user",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_usuario\": 5,\r\n    \"nome\": \"tetete\",\r\n    \"email\": \"eeee@gmail.com\",\r\n    \"senha\": \"8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92\",\r\n    \"perfil\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{job_quest_url}}/api/users/",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5cc43f56-25fe-4a7a-9135-615bba53eadf",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e293ee52-4c7a-4a9a-ad3a-33fefdca01e0",
+								"exec": [
+									"const response = pm.response.json();\r",
+									"if (response.success) {\r",
+									"    pm.collectionVariables.set(\"job_quest_token\", response.data.token);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"joao@gmail.com\",\r\n    \"senha\": \"8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{job_quest_url}}/api/login/",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"login",
+								""
+							]
+						},
+						"description": "login do usuario"
+					},
+					"response": []
+				},
+				{
+					"name": "signup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f989d07b-30f1-44b7-9b0e-3198f3e71c10",
+								"exec": [
+									"const response = pm.response.json();\r",
+									"if (response.success) {\r",
+									"    pm.collectionVariables.set(\"job_quest_token\", response.data.token);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"teste teste\",\r\n    \"email\": \"asdasdasd@gmail.com\",\r\n    \"senha\": \"8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92\",\r\n    \"perfil\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{job_quest_url}}/api/login/signup",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"login",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "validate_token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{job_quest_url}}/api/login/token",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"login",
+								"token"
+							]
+						},
+						"description": "login do usuario"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "empresa",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{job_quest_url}}/api/companies/",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"companies",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_company",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{job_quest_url}}/api/companies/2",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"companies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert_company",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"razao_social\": \"empresa 1 ltda\",\r\n    \"logo_url\": \"\",\r\n    \"id_usuario\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{job_quest_url}}/api/companies/",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"companies",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove_company",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{job_quest_url}}/api/companies/1",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"companies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_user",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"razao_social\": \"empresa 1 ltda\",\r\n    \"logo_url\": \"\",\r\n    \"id_empresa\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{job_quest_url}}/api/companies/",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"companies",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "vaga",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{job_quest_url}}/api/vacancies/?tipo=N&area=1",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"vacancies",
+								""
+							],
+							"query": [
+								{
+									"key": "tipo",
+									"value": "N"
+								},
+								{
+									"key": "area",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_vacancy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{job_quest_url}}/api/vacancies/2",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"vacancies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_vacancies_by_company",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{job_quest_url}}/api/vacancies/company/1",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"vacancies",
+								"company",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert_vacancy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_empresa\": 1,\r\n    \"id_area\": 1,\r\n    \"nome\": \"Desenvolvedor Java\",\r\n    \"quantidade\": 3,\r\n    \"descricao\": \"Vaga para desenvolvedor junior senior\",\r\n    \"habilidades\": [\r\n        2,3,4,10\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{job_quest_url}}/api/vacancies/",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"vacancies",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove_vacancy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{job_quest_url}}/api/vacancies/1",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"vacancies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_vacancy",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_vaga\": 1,\r\n    \"nome\": \"Desenvolvedor Java\",\r\n    \"quantidade\": 5,\r\n    \"descricao\": \"Vaga para desenvolvedor junior Java\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{job_quest_url}}/api/vacancies/",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"vacancies",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "habilidade",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{job_quest_url}}/api/skills/",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"skills",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_skill",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{job_quest_url}}/api/skills/2",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"skills",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert_skill",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Desenvolvedor React\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{job_quest_url}}/api/skills/",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"skills",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove_skill",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{job_quest_url}}/api/skills/14",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"skills",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_skill",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_habilidade\": 1,\r\n    \"nome\": \"PL/SQL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{job_quest_url}}/api/skills/",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"skills",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "matches",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{job_quest_url}}/api/matches/",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"matches",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_match",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{job_quest_url}}/api/matches/1",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"matches",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert_match",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_vaga\": 2,\r\n    \"descartado\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{job_quest_url}}/api/matches/",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"matches",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove_match",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{job_quest_url}}/api/matches/1",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"matches",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_match",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_match\": 1,\r\n    \"id_area\": 1,\r\n    \"id_vaga\": 1,\r\n    \"id_usuario\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{job_quest_url}}/api/matches/",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"matches",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "public",
+			"item": [
+				{
+					"name": "list_vacancies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{job_quest_url}}/api/public/list_vacancies",
+							"host": [
+								"{{job_quest_url}}"
+							],
+							"path": [
+								"api",
+								"public",
+								"list_vacancies"
+							],
+							"query": [
+								{
+									"key": "tipo",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "area",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{job_quest_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "028849b0-1868-4e71-b4b4-9300c4c31aee",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "690c6dcf-219e-4434-85f9-309c6d385b7d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "a85eda51-7771-4db8-88b7-61f20742c17e",
+			"key": "job_quest_token",
+			"value": ""
+		},
+		{
+			"id": "c3edc3c3-e0f0-4a29-81af-6d6f082313a2",
+			"key": "job_quest_url",
+			"value": "localhost:4000"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
