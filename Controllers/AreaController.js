@@ -8,6 +8,7 @@ class AreaController {
             response(null, await DAO.list());
         } catch (e) {
             console.log(e)
+
             response(constants.genericError, e);
         }
     }
