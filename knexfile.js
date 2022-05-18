@@ -4,17 +4,20 @@ module.exports = {
   // npm install sqlite3
   // https://docs.microsoft.com/pt-br/windows/dev-environment/javascript/nodejs-on-windows
   development: {
-    client: 'sqlite3', // or 'better-sqlite3'
+    client: process.env.CLIENT || "mysql2",
     connection: {
-      filename: "./mydb.sqlite"
+      host: "localhost",
+      user: process.env.USER || "root",
+      password: process.env.PASSWORD || "",
+      database: process.env.DATABASE || "job_quest",
+      port: process.env.PORTDB || 3306,
     },
     migrations: {
       directory: "database/migrations",
-  },
-  seeds: {
+    },
+    seeds: {
       directory: "database/seeds",
-  },
-    useNullAsDefault: true,
+    },
   },
 
   // staging: {
