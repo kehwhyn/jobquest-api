@@ -30,7 +30,8 @@ function setupServer() {
     app.use('/api/public', routerPublic)
     app.use('/api/users', TokenManager.ensureUserToken, usersRouter) // TokenManager.ensureUserToken -> rota protegida por autenticação
     app.use('/api/companies', TokenManager.ensureUserToken, companiesRouter)
-    app.use('/api/vacancies', TokenManager.ensureUserToken, vacanciesRouter)
+    app.use('/api/vacancies', vacanciesRouter)
+    //app.use('/api/vacancies', TokenManager.ensureUserToken, vacanciesRouter)
     app.use('/api/skills', TokenManager.ensureUserToken, skillsRouter)
     app.use('/api/matches', TokenManager.ensureUserToken, matchRouter)
     app.listen(port, buildBanner(process.env.PORT || config.app.port))

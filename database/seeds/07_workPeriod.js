@@ -16,6 +16,10 @@ exports.seed = function (knex) {
             {
                 "id_horario":3,
                 "nome": "Noite"
+            },
+            {
+                "id_horario":4,         //Para adicionar o turno flexivel é necessario atualizar os seeds
+                "nome": "Flexivel"
             }
         ])
       })
