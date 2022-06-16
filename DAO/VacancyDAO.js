@@ -91,14 +91,15 @@ class VacancyDAO {
         "v.*",
         "a.nome as area",
         "u.nome as empresa",
-        "u.url_foto as img_url",
+        "e.logo_url as img_url",
         "h.nome as nome_habilidade"
       )
       .from("vagas as v")
       .leftJoin("areas as a", "v.id_area", "a.id_area")
       .leftJoin("usuarios as u", "v.id_empresa", "u.id_usuario")
       .leftJoin("vaga_habilidade as vh", "v.id_vaga", "vh.id_vaga")
-      .leftJoin("habilidades as h", "h.id_habilidade", "vh.id_habilidade").where("id_empresa", id_empresa);
+      .leftJoin("empresas as e", "e.id_empresa", "u.id_usuario")
+      .leftJoin("habilidades as h", "h.id_habilidade", "vh.id_habilidade").where("v.id_empresa", id_empresa);
   }
 
   static findWorkPeriods() {
