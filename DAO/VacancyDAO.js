@@ -7,12 +7,13 @@ class VacancyDAO {
         "v.*",
         "a.nome as area",
         "u.nome as empresa",
-        "u.url_foto as img_url",
+        "e.logo_url as img_url",
         "h.nome as nome_habilidade"
       )
       .from("vagas as v")
       .leftJoin("areas as a", "v.id_area", "a.id_area")
       .leftJoin("usuarios as u", "v.id_empresa", "u.id_usuario")
+      .leftJoin("empresas as e", "e.id_empresa", "v.id_empresa")
       .leftJoin("vaga_habilidade as vh", "v.id_vaga", "vh.id_vaga")
       .leftJoin("habilidades as h", "h.id_habilidade", "vh.id_habilidade");
   }
@@ -23,7 +24,7 @@ class VacancyDAO {
         "v.*",
         "a.nome as area",
         "u.nome as empresa",
-        "u.url_foto as img_url",
+        "e.logo_url as img_url",
         "h.nome as nome_habilidade"
       )
       .from("vagas as v")
@@ -31,6 +32,7 @@ class VacancyDAO {
       .leftJoin("usuarios as u", "v.id_empresa", "u.id_usuario")
       .leftJoin("vaga_habilidade as vh", "v.id_vaga", "vh.id_vaga")
       .leftJoin("habilidades as h", "h.id_habilidade", "vh.id_habilidade")
+      .leftJoin("empresas as e", "e.id_empresa", "v.id_empresa")
       .join("match_usuario_vaga as m", "v.id_vaga", "m.id_vaga")
       .where("m.status", tipo)
       .andWhere("m.id_usuario", id_usuario);
@@ -43,7 +45,7 @@ class VacancyDAO {
         "v.*",
         "a.nome as area",
         "u.nome as empresa",
-        "u.url_foto as img_url",
+        "e.logo_url as img_url",
         "h.nome as nome_habilidade"
       )
       .from("vagas as v")
@@ -51,6 +53,7 @@ class VacancyDAO {
       .leftJoin("usuarios as u", "v.id_empresa", "u.id_usuario")
       .leftJoin("vaga_habilidade as vh", "v.id_vaga", "vh.id_vaga")
       .leftJoin("habilidades as h", "h.id_habilidade", "vh.id_habilidade")
+      .leftJoin("empresas as e", "e.id_empresa", "v.id_empresa")
       .whereNotIn("v.id_vaga", matchVacancyIds);
   }
 
@@ -60,11 +63,12 @@ class VacancyDAO {
         "v.*",
         "a.nome as area",
         "u.nome as empresa",
-        "u.url_foto as img_url"
+        "e.logo_url as img_url"
       )
       .from("vagas as v")
       .leftJoin("areas as a", "v.id_area", "a.id_area")
       .leftJoin("usuarios as u", "v.id_empresa", "u.id_usuario")
+      .leftJoin("empresas as e", "e.id_empresa", "v.id_empresa")
       .where("a.id_area", area);
   }
 
@@ -91,14 +95,15 @@ class VacancyDAO {
         "v.*",
         "a.nome as area",
         "u.nome as empresa",
-        "u.url_foto as img_url",
+        "e.logo_url as img_url",
         "h.nome as nome_habilidade"
       )
       .from("vagas as v")
       .leftJoin("areas as a", "v.id_area", "a.id_area")
       .leftJoin("usuarios as u", "v.id_empresa", "u.id_usuario")
       .leftJoin("vaga_habilidade as vh", "v.id_vaga", "vh.id_vaga")
-      .leftJoin("habilidades as h", "h.id_habilidade", "vh.id_habilidade").where("id_empresa", id_empresa);
+      .leftJoin("empresas as e", "e.id_empresa", "u.id_usuario")
+      .leftJoin("habilidades as h", "h.id_habilidade", "vh.id_habilidade").where("v.id_empresa", id_empresa);
   }
 
   static findWorkPeriods() {
