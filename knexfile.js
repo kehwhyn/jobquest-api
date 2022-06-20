@@ -4,7 +4,7 @@ module.exports = {
   // npm install sqlite3
   // https://docs.microsoft.com/pt-br/windows/dev-environment/javascript/nodejs-on-windows
   development: {
-    client: process.env.CLIENT || "mysql2",
+    client: "sqlite3",
     connection: {
       filename: "./mydb.db"
     },
