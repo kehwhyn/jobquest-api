@@ -22,7 +22,7 @@ routerCompanies.put('/:id', (req, res) => {
     })
 })
 
-routerCompanies.get('/', (req, res) => {
+routerCompanies.get('/', (res) => {
     CompanyController.list((error, data) => {
         res.json(ResponseHelper.createResponse(error, data))
     })

@@ -99,7 +99,7 @@ class UserController {
 }
 
 async function saveUser(id, user, response) {
-  return await DAO.update(id,
+  return DAO.update(id,
     {
       cpf_cnpj: user.cpf_cnpj,
       uf: user.uf,
@@ -115,25 +115,20 @@ async function saveUser(id, user, response) {
       updated_at: new Date()
    }, response);
 
-};
+}
 
 async function saveSkills(id, user) {
   user.habilidades.forEach(async(habilidade) => {
 
-//      const hab = await SkillDAO.findSkillByNome(habilidade.nome);
+    const  hab = await SkillDAO.save(habilidade.nome);
 
-//      if (!hab) {
-      const  hab = await SkillDAO.save(habilidade.nome);
-//      }
-
-     await SkillDAO.saveUserSkill(hab[0], id, {
-          instituicao: habilidade.instituicao,
-          data_inicio: habilidade.data_inicio,
-          data_fim: habilidade.data_fim
+    await SkillDAO.saveUserSkill(hab[0], id, {
+        instituicao: habilidade.instituicao,
+        data_inicio: habilidade.data_inicio,
+        data_fim: habilidade.data_fim
       });
   });
-
-};
+}
 
 async function saveExperiences(id, user) {
   user.experiencias.forEach(async(experiencia) => {
@@ -147,7 +142,7 @@ async function saveExperiences(id, user) {
     });
   });
 
-};
+}
 
 async function saveShifts(id, user) {
   await UserShiftDAO.deleteShifts(id);
@@ -161,5 +156,6 @@ async function saveShifts(id, user) {
     });
   });
 
-};
+}
+
 module.exports = UserController
