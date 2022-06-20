@@ -6,10 +6,6 @@ const UserDAO = require('../DAO/UsersDAO')
 const CompanyDAO = require('../DAO/CompanyDAO')
 const PerfilEnum = require("../Helpers/PerfilEnum");
 
-// const UserModel = models['Users']
-
-
-// const users = db.sequelize.model('Users')
 
 class AuthManager {
     static ensureUserToken(req, res, next) {

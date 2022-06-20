@@ -23,13 +23,11 @@ function userToken(login, password) {
     .digest('base64')
   ;
 
-  const signaruteURL = signarute
+  return signarute
     .replace(/\+/g, '-')
     .replace(/\//g, '_')
     .replace(/=/g, '')
   ;
-
-  return signaruteURL;
 }
 
 module.exports = userToken;

@@ -30,7 +30,6 @@ exports.seed = function (knex) {
                 "quantidade": 3,
                 "endereco":"rua x",
                 "horario":"1",
-                "endereco":"rua x",
                 "descricao": "Vaga para engenheiro civil"
             },
             {
